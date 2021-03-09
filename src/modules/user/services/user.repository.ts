@@ -11,6 +11,8 @@ export default class UserRepository {
     @InjectModel(User.name) private readonly userModel: Model<UserDocument>
   ) {}
 
-  async
+  async findByUsername(username: string): Promise<User | undefined> {
+    return await this.userModel.find()
+  }
 
 }
