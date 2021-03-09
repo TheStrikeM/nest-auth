@@ -21,7 +21,7 @@ export default class AuthController {
   }
 
   @UseGuards(AuthGuard('local'))
-  @Post('register')
+  @Post('reg')
   async register(@Body() dto: CreateUserDto) {
     return this.authService.registerUser(dto)
   }
