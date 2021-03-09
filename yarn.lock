@@ -569,7 +569,7 @@
     "webpack" "5.11.0"
     "webpack-node-externals" "2.5.2"
 
-"@nestjs/common@^6.0.0 || ^7.0.0", "@nestjs/common@^7.0.0", "@nestjs/common@^7.5.1":
+"@nestjs/common@^6.0.0 || ^7.0.0", "@nestjs/common@^6.10.0 || ^7.0.0", "@nestjs/common@^7.0.0", "@nestjs/common@^7.5.1":
   "integrity" "sha512-xijw6so4yA8Ywi8mnrA7Kz97ZC36u20Eyb5/XvmokdLcgTcTyHVdE39r44JYnjHPf8SKZoJ965zdu/fKl4s4GQ=="
   "resolved" "https://registry.yarnpkg.com/@nestjs/common/-/common-7.6.13.tgz"
   "version" "7.6.13"
@@ -577,6 +577,18 @@
     "axios" "0.21.1"
     "iterare" "1.2.1"
     "tslib" "2.1.0"
+    "uuid" "8.3.2"
+
+"@nestjs/config@^0.6.3":
+  "integrity" "sha512-JxvvUpmH0/WOrTB+zh8dEkxSUQXhB7V3d/qeQXyCnMiEFjaq89+fNFztpWjz4DlOfdS4/eYTzIEy9PH2uGnfzA=="
+  "resolved" "https://registry.npmjs.org/@nestjs/config/-/config-0.6.3.tgz"
+  "version" "0.6.3"
+  dependencies:
+    "dotenv" "8.2.0"
+    "dotenv-expand" "5.1.0"
+    "lodash.get" "4.4.2"
+    "lodash.has" "4.5.2"
+    "lodash.set" "4.3.2"
     "uuid" "8.3.2"
 
 "@nestjs/core@^6.0.0 || ^7.0.0", "@nestjs/core@^7.0.0", "@nestjs/core@^7.5.1":
@@ -2203,6 +2215,16 @@
   "version" "2.0.1"
   dependencies:
     "webidl-conversions" "^5.0.0"
+
+"dotenv-expand@5.1.0":
+  "integrity" "sha512-YXQl1DSa4/PQyRfgrv6aoNjhasp/p4qs9FjJ4q4cQk+8m4r6k4ZSiEyytKG8f8W9gi8WsQtIObNmKd+tMzNTmA=="
+  "resolved" "https://registry.npmjs.org/dotenv-expand/-/dotenv-expand-5.1.0.tgz"
+  "version" "5.1.0"
+
+"dotenv@8.2.0":
+  "integrity" "sha512-8sJ78ElpbDJBHNeBzUbUVLsqKdccaa/BXF1uPTw3GrvQTBgrQrtObr2mUrE38vzYd8cEv+m/JBfDLioYcfXoaw=="
+  "resolved" "https://registry.npmjs.org/dotenv/-/dotenv-8.2.0.tgz"
+  "version" "8.2.0"
 
 "ecc-jsbn@~0.1.1":
   "integrity" "sha1-OoOpBOVDUyh4dMVkt1SThoSamMk="
@@ -3985,6 +4007,21 @@
   "version" "6.0.0"
   dependencies:
     "p-locate" "^5.0.0"
+
+"lodash.get@4.4.2":
+  "integrity" "sha1-LRd/ZS+jHpObRDjVNBSZ36OCXpk="
+  "resolved" "https://registry.npmjs.org/lodash.get/-/lodash.get-4.4.2.tgz"
+  "version" "4.4.2"
+
+"lodash.has@4.5.2":
+  "integrity" "sha1-0Z9NwQlQWMzL4rDN9O4P5Ko3yGI="
+  "resolved" "https://registry.npmjs.org/lodash.has/-/lodash.has-4.5.2.tgz"
+  "version" "4.5.2"
+
+"lodash.set@4.3.2":
+  "integrity" "sha1-2HV7HagH3eJIFrDWqEvqGnYjCyM="
+  "resolved" "https://registry.npmjs.org/lodash.set/-/lodash.set-4.3.2.tgz"
+  "version" "4.3.2"
 
 "lodash.sortby@^4.7.0":
   "integrity" "sha1-7dFMgk4sycHgsKG0K7UhBRakJDg="
