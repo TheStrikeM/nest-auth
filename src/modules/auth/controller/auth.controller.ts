@@ -4,7 +4,6 @@ import AuthService from '../services/auth.service';
 import UserRepository from '../../user/services/user.repository';
 import CreateUserDto from '../dto/CreateUserDto';
 
-
 @Controller('auth')
 export default class AuthController {
 

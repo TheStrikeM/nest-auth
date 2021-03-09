@@ -10,7 +10,7 @@ export default class AuthService {
 
   constructor(
     private readonly userRepository: UserRepository,
-    private readonly jwtService: JwtService
+    private readonly jwtService: JwtService,
   ) {}
 
   async validateUser(username: string, pass: string): Promise<UserDto> {
@@ -35,6 +35,7 @@ export default class AuthService {
     if(candidate) {
       throw new Error("Такой пользователь уже существует")
     }
+
 
     return await this.userRepository.create(dto)
   }
