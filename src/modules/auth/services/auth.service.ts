@@ -3,6 +3,7 @@ import UserRepository from '../../user/services/user.repository';
 import { User } from '../../user/schema/User';
 import UserDto from '../../user/dto/UserDto';
 import { JwtService } from '@nestjs/jwt';
+import CryptoService from './crypto.service';
 
 
 @Injectable()
@@ -11,6 +12,7 @@ export default class AuthService {
   constructor(
     private readonly userRepository: UserRepository,
     private readonly jwtService: JwtService,
+    private readonly cryptoService: CryptoService
   ) {}
 
   async validateUser(username: string, pass: string): Promise<UserDto> {
