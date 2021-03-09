@@ -20,7 +20,6 @@ export default class AuthController {
     return this.authService.generateToken(req.user)
   }
 
-  @UseGuards(AuthGuard('local'))
   @Post('reg')
   async register(@Body() dto: CreateUserDto) {
     return this.authService.registerUser(dto)
