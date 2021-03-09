@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, ObjectId } from 'mongoose';
 import { User, UserDocument } from '../schema/User';
+import UserDto from '../dto/UserDto';
 
 
 @Injectable()
@@ -17,6 +18,10 @@ export default class UserRepository {
 
   async findById(id: ObjectId): Promise<User | undefined> {
     return this.userModel.findById(id)
+  }
+
+  async create(dto: UserDto): Promise<User> {
+    return this.userModel.create({...dto})
   }
 
 }
