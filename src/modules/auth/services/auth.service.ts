@@ -29,4 +29,13 @@ export default class AuthService {
       accessToken: this.jwtService.sign(payload)
     }
   }
+
+  async registerUser(dto: UserDto) {
+    const candidate = await this.userRepository.findByUsername(dto.username)
+    if(candidate) {
+      throw new Error("Такой пользователь уже существует")
+    }
+
+    return await this.userRepository.create(dto)
+  }
 }
