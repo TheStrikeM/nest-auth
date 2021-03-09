@@ -17,7 +17,8 @@ export default class AuthService {
 
   async validateUser(username: string, pass: string): Promise<UserDto> {
     const candidate: User = await this.userRepository.findByUsername(username)
-    if(candidate && candidate.password === pass) {
+    const decryptedPassword = this.cryptoService.decrypt(candidate.password)
+    if(candidate && decryptedPassword === pass) {
       const {password, ...secureUser} = candidate
       return secureUser
     }
@@ -38,7 +39,7 @@ export default class AuthService {
       throw new Error("Такой пользователь уже существует")
     }
 
-
-    return await this.userRepository.create(dto)
+    const encryptedPassword = this.cryptoService.encrypt(dto.password)
+    return await this.userRepository.create({ ...dto, password: encryptedPassword })
   }
 }
