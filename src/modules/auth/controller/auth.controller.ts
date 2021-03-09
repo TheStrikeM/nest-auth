@@ -1,12 +1,16 @@
 import { Controller, Post, UseGuards, Request, Get } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import AuthService from '../services/auth.service';
+import UserRepository from '../../user/services/user.repository';
 
 
 @Controller('auth')
 export default class AuthController {
 
-  constructor(private readonly authService: AuthService) {}
+  constructor(
+    private readonly authService: AuthService,
+    private readonly userRepository: UserRepository
+  ) {}
 
   @UseGuards(AuthGuard('local'))
   @Post('login')
@@ -21,8 +25,9 @@ export default class AuthController {
   }
 
   @UseGuards(AuthGuard('jwt'))
-  @Post('profile')
+  @Post('refresh')
   async refresh(@Request() req) {
-    return { message: "У вас есть права юзера!" }
+    const user = await this.userRepository.findById(req.user.id)
+    return this.authService.generateToken(user)
   }
 }
