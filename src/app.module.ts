@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import AuthModule from './modules/auth/auth.module';
+import { ConfigModule } from '@nestjs/config';
 
 
 const dbConnectURI =
@@ -9,7 +10,8 @@ const dbConnectURI =
 @Module({
   imports: [
     AuthModule,
-    MongooseModule.forRoot(dbConnectURI)
+    MongooseModule.forRoot(dbConnectURI),
+    ConfigModule.forRoot()
   ],
 })
 export class AppModule {}
