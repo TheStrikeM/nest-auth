@@ -12,7 +12,7 @@ export default class UserRepository {
   ) {}
 
   async findByUsername(username: string): Promise<User | undefined> {
-    return await this.userModel.find()
+    return this.userModel.findOne({username})
   }
 
 }
