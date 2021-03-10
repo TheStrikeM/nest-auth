@@ -2,11 +2,15 @@ import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { Observable } from 'rxjs';
 import { User } from '../../user/schema/User';
+import UserRepository from '../../user/services/user.repository';
 
 
 @Injectable()
 export class RolesGuard implements CanActivate {
-  constructor(private readonly reflector: Reflector) {}
+  constructor(
+    private readonly reflector: Reflector,
+    private readonly userRepository: UserRepository
+  ) {}
 
   canActivate(context: ExecutionContext):
     boolean | Promise<boolean> | Observable<boolean> {
