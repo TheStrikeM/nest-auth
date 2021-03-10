@@ -3,6 +3,10 @@ import { AuthGuard } from '@nestjs/passport';
 import AuthService from '../services/auth.service';
 import UserRepository from '../../user/services/user.repository';
 import CreateUserDto from '../dto/CreateUserDto';
+import { hasRoles } from '../decorator/roles.decorator';
+import JwtGuard from '../guard/jwt.guard';
+import { RolesGuard } from '../guard/roles.guard';
+import { UserRole } from '../../user/dto/UserDto';
 
 @Controller('auth')
 export default class AuthController {
@@ -25,7 +29,8 @@ export default class AuthController {
   }
 
 
-  @UseGuards(AuthGuard('jwt'))
+  @hasRoles(UserRole.ADMIN)
+  @UseGuards(JwtGuard, RolesGuard)
   @Get('profile')
   getProfile(@Request() req) {
     return { message: "У вас есть права юзера!" }

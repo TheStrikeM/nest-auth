@@ -1,5 +1,6 @@
 // @ts-ignore
 import { MaxLength, MinLength } from 'class-validator';
+import { UserRole } from '../../user/dto/UserDto';
 
 
 export default class CreateUserDto {
@@ -11,7 +12,6 @@ export default class CreateUserDto {
   })
   username: string
 
-
   @MinLength(5, {
     message: "Ваш пароль должен состоять из не менее 5 символов"
   })
@@ -19,4 +19,6 @@ export default class CreateUserDto {
     message: "Ваш пароль должен состоять из не менее 25 символов"
   })
   password: string
+
+  role: UserRole = UserRole.USER
 }
