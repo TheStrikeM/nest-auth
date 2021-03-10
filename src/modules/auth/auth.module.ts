@@ -8,6 +8,8 @@ import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import JwtStrategy from './services/jwt.strategy';
 import CryptoService from './services/crypto.service';
+import { RolesGuard } from './guard/roles.guard';
+import JwtGuard from './guard/jwt.guard';
 
 
 @Module({
@@ -25,6 +27,13 @@ import CryptoService from './services/crypto.service';
     })
   ],
   controllers: [AuthController],
-  providers: [AuthService, LocalStrategy, JwtStrategy, CryptoService]
+  providers: [
+    AuthService,
+    LocalStrategy,
+    JwtStrategy,
+    CryptoService,
+    RolesGuard,
+    JwtGuard
+  ]
 })
 export default class AuthModule {}
