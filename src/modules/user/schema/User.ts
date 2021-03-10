@@ -6,14 +6,23 @@ export type UserDocument = User & Document;
 
 @Schema()
 export class User {
-  @Prop()
+  @Prop({
+    min: 5,
+    max: 25,
+    required: true,
+    unique: true
+  })
   username: string;
 
-  @Prop()
+  @Prop({
+    min: 5,
+    max: 25,
+    required: true
+  })
   password: string;
 
-  @Prop()
-  role: UserRole
+  @Prop({enum: UserRole, default: UserRole.USER})
+  role: UserRole;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
