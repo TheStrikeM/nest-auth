@@ -5,6 +5,9 @@ import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export default class CryptoService {
+  algorithm = this.configService.get<string>('CRYPT_ALGORITHM')
+  secret_key = this.configService.get<string>('CRYPT_SECRET_KEY')
+
   constructor(
     private readonly configService: ConfigService
   ) {
@@ -13,8 +16,8 @@ export default class CryptoService {
   encrypt(pass: string): string {
     try {
       const cipher = crypto.createCipher(
-        this.configService.get<string>('CRYPT_ALGORITHM'),
-        this.configService.get<string>('CRYPT_SECRET_KEY')
+        this.algorithm,
+        this.secret_key
       )
       let encrypted = cipher.update(pass,'utf8','hex')
       encrypted += cipher.final('hex');
@@ -28,8 +31,8 @@ export default class CryptoService {
   decrypt(pass: string): string {
     try {
       const decipher = crypto.createDecipher(
-        this.configService.get<string>('CRYPT_ALGORITHM'),
-        this.configService.get<string>('CRYPT_SECRET_KEY')
+        this.algorithm,
+        this.secret_key
       )
       let decrypted = decipher.update(pass,'hex','utf8')
       decrypted += decipher.final('utf8');
