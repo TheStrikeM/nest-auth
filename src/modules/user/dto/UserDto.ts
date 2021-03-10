@@ -3,6 +3,9 @@ import { ObjectId } from 'mongoose';
 
 export enum UserRole {
   ADMIN = "ADMIN",
+  EDITOR = "EDITOR",
+  MANAGER = "MANAGER",
+  PREMIUM = "PREMIUM",
   USER = "USER"
 }
 
