@@ -17,6 +17,7 @@ export default class CryptoService {
     )
     let encrypted = cipher.update(pass,'utf8','hex')
     encrypted += cipher.final('hex');
+    console.log(encrypted);
     return encrypted
   }
 
@@ -27,6 +28,7 @@ export default class CryptoService {
     )
     let decrypted = decipher.update(pass,'hex','utf8')
     decrypted += decipher.final('utf8');
+    console.log(decrypted);
     return decrypted
   }
 
