@@ -5,8 +5,8 @@ import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export default class CryptoService {
-  algorithm = this.configService.get<string>('CRYPT_ALGORITHM')
-  secret_key = this.configService.get<string>('CRYPT_SECRET_KEY')
+  algorithm = this.configService.get<string>('CRYPT_ALGORITHM') || 'aes-256-ctr'
+  secret_key = this.configService.get<string>('CRYPT_SECRET_KEY') || 'SuperSecretKey'
 
   constructor(
     private readonly configService: ConfigService
