@@ -5,6 +5,8 @@ import { User } from '../../user/schema/User';
 import UserRepository from '../../user/services/user.repository';
 
 
+export type ReturnedGuard = boolean | Promise<boolean> | Observable<boolean>
+
 @Injectable()
 export class RolesGuard implements CanActivate {
   constructor(
@@ -12,8 +14,7 @@ export class RolesGuard implements CanActivate {
     private readonly userRepository: UserRepository
   ) {}
 
-  canActivate(context: ExecutionContext):
-    boolean | Promise<boolean> | Observable<boolean> {
+  canActivate(context: ExecutionContext): ReturnedGuard {
     const roles = this.reflector.get<string[]>('roles', context.getHandler())
     if(!roles) {
       return true
@@ -21,8 +22,20 @@ export class RolesGuard implements CanActivate {
 
     const request = context.switchToHttp().getRequest()
     const user: User = request.user
-    console.log(user)
+    return this.matchRoles(roles, user)
+  }
 
-    return true
+  async matchRoles(roles: string[], user: User) {
+    const verifiedUser = await this.userRepository.findByUsername(user.username)
+    if(!verifiedUser) {
+      return false
+    }
+
+    let hasPermission = false
+    const hasRole = () => roles.indexOf(user.role) > -1
+    if(hasRole()) {
+      hasPermission = true
+    }
+    return hasPermission
   }
 }
