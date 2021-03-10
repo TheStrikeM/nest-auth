@@ -29,10 +29,11 @@ export default class AuthController {
   }
 
 
-  @hasRoles(UserRole.ADMIN)
-  @UseGuards(JwtGuard, RolesGuard)
+  @UseGuards(JwtGuard)
   @Get('profile')
   getProfile(@Request() req) {
+    console.log('Проблема в');
+    console.log(req.user);
     return { message: "У вас есть права юзера!" }
   }
 

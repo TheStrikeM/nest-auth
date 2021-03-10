@@ -18,8 +18,8 @@ export default class JwtStrategy extends PassportStrategy(Strategy) {
     });
   }
 
-  async validate(payload: any): Promise<{ id: number }> {
-    const {iat, exp, ...res} = payload
-    return res
+  async validate(payload: any) {
+    console.log(payload.user);
+    return payload.user
   }
 }

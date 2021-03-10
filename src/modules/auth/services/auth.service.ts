@@ -26,11 +26,9 @@ export default class AuthService {
     return null
   }
 
-  async generateToken(user: UserDto) {
-    const payload = { id: user._id, username: user.username }
-    return {
-      accessToken: this.jwtService.sign(payload)
-    }
+  async generateToken(user) {
+    const {password, ...payload} = user._doc
+    return this.jwtService.signAsync({user: payload})
   }
 
   async registerUser(dto: UserDto) {
