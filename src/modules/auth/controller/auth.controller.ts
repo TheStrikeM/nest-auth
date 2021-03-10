@@ -29,7 +29,8 @@ export default class AuthController {
   }
 
 
-  @UseGuards(JwtGuard)
+  @hasRoles('ADMIN')
+  @UseGuards(JwtGuard, RolesGuard)
   @Get('profile')
   getProfile(@Request() req) {
     console.log('Проблема в');
