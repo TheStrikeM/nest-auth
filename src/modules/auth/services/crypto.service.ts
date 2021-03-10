@@ -13,8 +13,8 @@ export default class CryptoService {
   encrypt(pass: string): string {
     try {
       const cipher = crypto.createCipher(
-        'aes-256-ctr',
-        'd6F3Efeq'
+        this.configService.get<string>('CRYPT_ALGORITHM'),
+        this.configService.get<string>('CRYPT_SECRET_KEY')
       )
       let encrypted = cipher.update(pass,'utf8','hex')
       encrypted += cipher.final('hex');
@@ -28,8 +28,8 @@ export default class CryptoService {
   decrypt(pass: string): string {
     try {
       const decipher = crypto.createDecipher(
-        'aes-256-ctr',
-        'd6F3Efeq'
+        this.configService.get<string>('CRYPT_ALGORITHM'),
+        this.configService.get<string>('CRYPT_SECRET_KEY')
       )
       let decrypted = decipher.update(pass,'hex','utf8')
       decrypted += decipher.final('utf8');
