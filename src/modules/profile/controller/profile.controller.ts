@@ -11,6 +11,6 @@ export default class ProfileController {
   @UseGuards(JwtGuard)
   @Get()
   async getProfile(@Request() req) {
-    return this.profileService.getProfile(req.user._doc._id)
+    return this.profileService.getProfile(req.user._id)
   }
 }

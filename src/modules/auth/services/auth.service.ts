@@ -28,9 +28,10 @@ export default class AuthService {
 
   async generateToken(user) {
     const {password, ...payload} = user._doc
+    const token = await this.jwtService.signAsync({user: payload})
     return {
       message: "Вы успешно авторизовались!",
-      accessToken: this.jwtService.signAsync({user: payload}),
+      accessToken: token,
       user: payload
     }
   }
