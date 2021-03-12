@@ -17,7 +17,7 @@ export default class ProfileService {
     return this.userRepository.findById(id)
   }
 
-  async setPhoto(id: ObjectId, file): Promise<string> {
-
+  setPhoto(id: ObjectId, file): string {
+    return "Privet"
   }
 }

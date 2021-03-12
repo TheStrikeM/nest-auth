@@ -4,6 +4,7 @@ import UserModule from '../user/user.module';
 import ProfileService from './services/profile.service';
 import ProfileController from './controller/profile.controller';
 import FileModule from '../file/file.module';
+import FileService from '../file/file.service';
 
 
 @Module({
@@ -12,7 +13,7 @@ import FileModule from '../file/file.module';
     UserModule,
     FileModule
   ],
-  providers: [ProfileService],
+  providers: [ProfileService, FileService],
   controllers: [ProfileController]
 })
 export default class ProfileModule {}
