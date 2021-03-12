@@ -9,6 +9,19 @@ export class User {
   @Prop({
     min: 5,
     max: 25,
+  })
+  name: string;
+
+  @Prop({
+    min: 5,
+    max: 25,
+    unique: true
+  })
+  photo: string;
+
+  @Prop({
+    min: 5,
+    max: 25,
     required: true,
     unique: true
   })

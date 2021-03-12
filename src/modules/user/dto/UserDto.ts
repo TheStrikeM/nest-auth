@@ -11,6 +11,8 @@ export enum UserRole {
 
 export default class UserDto {
   _id?: ObjectId
+  name?: string
+  photo?: string
   username?: string
   password?: string
   role?: UserRole = UserRole.USER
