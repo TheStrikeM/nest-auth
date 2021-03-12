@@ -7,6 +7,7 @@ import { hasRoles } from '../decorator/roles.decorator';
 import JwtGuard from '../guard/jwt.guard';
 import { RolesGuard } from '../guard/roles.guard';
 import { UserRole } from '../../user/dto/UserDto';
+import LocalGuard from '../guard/local.guard';
 
 @Controller('auth')
 export default class AuthController {
@@ -17,7 +18,7 @@ export default class AuthController {
   ) {}
 
 
-  @UseGuards(AuthGuard('local'))
+  @UseGuards(LocalGuard)
   @Post('login')
   async login(@Request() req) {
     return this.authService.generateToken(req.user)
@@ -35,7 +36,7 @@ export default class AuthController {
     return { message: "У вас есть права юзера!" }
   }
 
-  @UseGuards(AuthGuard('jwt'))
+  @UseGuards(JwtGuard)
   @Post('refresh')
   async refresh(@Request() req) {
     const user = await this.userRepository.findById(req.user.id)
