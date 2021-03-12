@@ -1,4 +1,5 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, UseGuards } from '@nestjs/common';
+import JwtGuard from '../../auth/guard/jwt.guard';
 
 
 @Controller('profile')
@@ -6,8 +7,9 @@ export default class ProfileController {
 
   constructor() {}
 
+  @UseGuards(JwtGuard)
   @Get()
-  getSex(): {message: string} {
-    return {message: "Привет, детка!"}
+  getProfile() {
+    return {message: "Your profile"}
   }
 }
