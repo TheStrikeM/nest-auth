@@ -5,10 +5,10 @@ import { UserRole } from '../../user/dto/UserDto';
 
 export default class CreateUserDto {
   @MinLength(5, {
-    message: "Ваш логин должен состоять из не менее 5 символов"
+    message: "Ваше имя должен состоять из не менее 5 символов"
   })
   @MaxLength(25, {
-    message: "Ваш логин должен состоять из не менее 25 символов"
+    message: "Ваше имя должен состоять из не менее 25 символов"
   })
   name: string
 
