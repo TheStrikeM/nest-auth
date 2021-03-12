@@ -28,7 +28,7 @@ export default class AuthController {
     return this.authService.registerUser(dto)
   }
 
-  @hasRoles('ADMIN')
+  @hasRoles(UserRole.ADMIN)
   @UseGuards(JwtGuard, RolesGuard)
   @Get('profile')
   getProfile(@Request() req) {
