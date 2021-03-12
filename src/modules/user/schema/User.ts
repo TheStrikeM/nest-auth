@@ -15,7 +15,8 @@ export class User {
   @Prop({
     min: 5,
     max: 25,
-    unique: true
+    unique: true,
+    default: "Нет"
   })
   photo: string;
 
