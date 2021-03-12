@@ -1,15 +1,16 @@
-import { Controller, Get, UseGuards } from '@nestjs/common';
+import { Controller, Get, Request, UseGuards } from '@nestjs/common';
 import JwtGuard from '../../auth/guard/jwt.guard';
+import ProfileService from '../services/profile.service';
 
 
 @Controller('profile')
 export default class ProfileController {
 
-  constructor() {}
+  constructor(private readonly profileService: ProfileService) {}
 
   @UseGuards(JwtGuard)
   @Get()
-  getProfile() {
-    return {message: "Your profile"}
+  async getProfile(@Request() req) {
+    return this.profileService.getProfile(req.user._doc._id)
   }
 }
