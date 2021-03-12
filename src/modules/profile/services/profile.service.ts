@@ -17,7 +17,12 @@ export default class ProfileService {
     return this.userRepository.findById(id)
   }
 
-  setPhoto(id: ObjectId, file): string {
-    return "Privet"
+  async setPhoto(id: ObjectId, file): Promise<User> {
+    try {
+        const newPhoto = this.fileService.createFile(file)
+        return this.userRepository.updatePhoto(id, newPhoto)
+    } catch (e) {
+        throw new Error(`Error: ${e.message}`)
+    }
   }
 }

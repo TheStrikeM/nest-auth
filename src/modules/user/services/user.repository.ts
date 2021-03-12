@@ -24,4 +24,12 @@ export default class UserRepository {
     return this.userModel.create({...dto})
   }
 
+  async updatePhoto(id: ObjectId, fileName: string): Promise<User> {
+    const updatedUser = await this.userModel.findById(id)
+    updatedUser.photo = fileName
+    await updatedUser.save()
+
+    return updatedUser
+  }
+
 }
